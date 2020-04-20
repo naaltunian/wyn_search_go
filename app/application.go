@@ -2,7 +2,6 @@ package application
 
 import (
 	"encoding/json"
-	"fmt"
 	"log"
 	"net/http"
 	"os"
@@ -18,7 +17,6 @@ type server struct {
 
 // StartApplication sets up the router and middleware
 func StartApplication() {
-	fmt.Println("start app")
 	s := server{
 		router: mux.NewRouter(),
 	}

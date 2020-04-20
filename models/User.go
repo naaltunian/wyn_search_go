@@ -1,4 +1,4 @@
-package UserModel
+package usermodel
 
 import (
 	"time"
@@ -7,6 +7,7 @@ import (
 	"go.mongodb.org/mongo-driver/bson/primitive"
 )
 
+// User is the user model
 type User struct {
 	ID             primitive.ObjectID `json:"_id,omitempty" bson:"_id, omitempty"`
 	Name           string             `json:"name,omitempty" bson:"name,omitempty"`
