@@ -2,6 +2,7 @@ package application
 
 import (
 	"encoding/json"
+	"fmt"
 	"log"
 	"net/http"
 	"os"
@@ -17,6 +18,7 @@ type server struct {
 
 // StartApplication sets up the router and middleware
 func StartApplication() {
+	fmt.Println("start app")
 	s := server{
 		router: mux.NewRouter(),
 	}
@@ -24,7 +26,6 @@ func StartApplication() {
 
 	port := os.Getenv("PORT")
 
-	log.Println("Using Port " + port)
 	s.srv = &http.Server{
 		Addr:           ":" + port,
 		Handler:        s.router,
@@ -32,10 +33,12 @@ func StartApplication() {
 		WriteTimeout:   30 * time.Second,
 		MaxHeaderBytes: 1 << 20,
 	}
+	log.Print("Connected to port " + port)
 	err := s.srv.ListenAndServe()
 	if err != nil {
-		log.Println(err)
+		log.Fatal(err)
 	}
+
 }
 
 func (s *server) routes() {
